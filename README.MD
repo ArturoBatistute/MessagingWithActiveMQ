@@ -1,4 +1,4 @@
-# Hands on with Messaging with Java JMS and ActiveMQ
+# Messaging with Java JMS and ActiveMQ
 
 <p align="center">
     <img width="500" height="auto" src="mail.gif" alt="mail gif" />
@@ -9,8 +9,7 @@
 
 ## Description
 
-	In this project we will deep dive into messaging with Java using the JMS. The goal is create a consumer and a producer
-	to exchange real time messages.
+In this project we will deep dive into messaging with Java using the JMS. The goal is create a consumer and a producer to exchange real time messages.
 
 ## Technologies
 
