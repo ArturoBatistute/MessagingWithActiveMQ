@@ -9,7 +9,7 @@ public class Main {
 
 	public static void main(String[] args) throws NamingException, JMSException {
 
-		consumer.consumeUniqueMessage();
+		// consumer.consumeUniqueMessage();
+		consumer.consumeMultipleMessages();
 	}
-
 }
