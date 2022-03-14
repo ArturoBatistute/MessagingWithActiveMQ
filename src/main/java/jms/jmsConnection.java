@@ -1,50 +1,38 @@
 package jms;
 
-import java.util.Scanner;
-
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
 import javax.jms.Destination;
 import javax.jms.JMSException;
-import javax.jms.Message;
-import javax.jms.MessageConsumer;
 import javax.jms.Session;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
-public class jms {
+public class jmsConnection {
 
 	private static Session session;
 	private static Connection connection;
-	private static Destination destinationQueue;
 	private static InitialContext context;
+	public Destination destinationQueue;
 
-	@SuppressWarnings("resource")
-	public static void main(String[] args) throws NamingException, JMSException {
+	public Session start(String queueName) throws NamingException, JMSException {
 
 		context = new InitialContext();
 
 		final ConnectionFactory factory = (ConnectionFactory) context.lookup("ConnectionFactory");
 
 		connection = factory.createConnection();
-		destinationQueue = (Destination) context.lookup("test");
+
+		destinationQueue = (Destination) context.lookup(queueName);
 
 		connection.start();
 
 		session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 
-		final MessageConsumer messageConsumer = session.createConsumer(destinationQueue);
-
-		final Message message = messageConsumer.receive();
-
-		System.out.println(message);
-
-		new Scanner(System.in).nextLine();
-
-		closeConnections();
+		return session;
 	}
 
-	private static void closeConnections() throws JMSException, NamingException {
+	public void closeConnections() throws JMSException, NamingException {
 
 		session.close();
 		connection.close();
