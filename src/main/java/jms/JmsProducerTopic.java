@@ -6,19 +6,21 @@ import javax.jms.MessageProducer;
 import javax.jms.Session;
 import javax.naming.NamingException;
 
-public class jmsProducer {
+public class JmsProducerTopic {
 
-	private final jmsConnection jmsConnection = new jmsConnection();
-	private static final String QUEUE_NAME = "test";
+	private final JmsConnection jmsConnection = new JmsConnection();
+	private static final String TOPIC_NAME = "store";
 
 	public void produceUniqueMessage() throws NamingException, JMSException {
 
-		final Session session = jmsConnection.start(QUEUE_NAME);
+		final Session session = jmsConnection.start(TOPIC_NAME);
 		final MessageProducer messageProducer = session.createProducer(jmsConnection.destinationQueue);
-		final Message message = session.createTextMessage("Sup from a messaging producer");
+		final Message message = session.createTextMessage("Sup from a messaging producer topic");
 
 		messageProducer.send(message);
 
 		jmsConnection.closeConnections();
+
+		07:33
 	}
 }

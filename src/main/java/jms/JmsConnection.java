@@ -8,7 +8,7 @@ import javax.jms.Session;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
-public class jmsConnection {
+public class JmsConnection {
 
 	private static Session session;
 	private static Connection connection;

@@ -10,9 +10,9 @@ import javax.jms.Session;
 import javax.jms.TextMessage;
 import javax.naming.NamingException;
 
-public class jmsConsumer {
+public class JmsConsumerQueue {
 
-	private final jmsConnection jmsConnection = new jmsConnection();
+	private final JmsConnection jmsConnection = new JmsConnection();
 	private static final String QUEUE_NAME = "test";
 
 	@SuppressWarnings("resource")

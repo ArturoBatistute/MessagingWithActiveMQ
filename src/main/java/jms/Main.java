@@ -5,8 +5,8 @@ import javax.naming.NamingException;
 
 public class Main {
 
-	private final static jmsConsumer consumer = new jmsConsumer();
-	private final static jmsProducer producer = new jmsProducer();
+	private final static JmsConsumerQueue consumer = new JmsConsumerQueue();
+	private final static JmsProducerQueue producer = new JmsProducerQueue();
 
 	public static void main(String[] args) throws NamingException, JMSException {
 
