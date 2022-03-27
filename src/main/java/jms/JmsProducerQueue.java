@@ -8,7 +8,7 @@ import javax.naming.NamingException;
 
 public class JmsProducerQueue {
 
-	private final JmsConnection jmsConnection = new JmsConnection();
+	private final JmsConnectionQueue jmsConnection = new JmsConnectionQueue();
 	private static final String QUEUE_NAME = "test";
 
 	public void produceUniqueMessage() throws NamingException, JMSException {

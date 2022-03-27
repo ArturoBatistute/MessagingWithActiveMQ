@@ -8,20 +8,21 @@ import javax.jms.Session;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
-public class JmsConnection {
+public class JmsConnectionTopic {
 
 	private static Session session;
 	private static Connection connection;
 	private static InitialContext context;
 	public Destination destinationQueue;
 
-	public Session start(String queueName) throws NamingException, JMSException {
+	public Session start(String queueName, String topicId) throws NamingException, JMSException {
 
 		context = new InitialContext();
 
 		final ConnectionFactory factory = (ConnectionFactory) context.lookup("ConnectionFactory");
 
 		connection = factory.createConnection();
+		connection.setClientID(topicId);
 
 		destinationQueue = (Destination) context.lookup(queueName);
 

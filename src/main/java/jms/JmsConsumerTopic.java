@@ -8,32 +8,21 @@ import javax.jms.MessageConsumer;
 import javax.jms.MessageListener;
 import javax.jms.Session;
 import javax.jms.TextMessage;
+import javax.jms.Topic;
 import javax.naming.NamingException;
 
-public class JmsConsumerQueue {
+public class JmsConsumerTopic {
 
-	private final JmsConnectionQueue jmsConnection = new JmsConnectionQueue();
-	private static final String QUEUE_NAME = "test";
-
-	@SuppressWarnings("resource")
-	public void consumeUniqueMessage() throws NamingException, JMSException {
-
-		final Session session = jmsConnection.start(QUEUE_NAME);
-		final MessageConsumer messageConsumer = session.createConsumer(jmsConnection.destinationQueue);
-		final Message message = messageConsumer.receive();
-
-		System.out.println(message);
-
-		new Scanner(System.in).nextLine();
-
-		jmsConnection.closeConnections();
-	}
+	private final JmsConnectionTopic jmsConnection = new JmsConnectionTopic();
+	private static final String TOPIC_NAME = "store";
+	private static final String TOPIC_ID = "store";
 
 	@SuppressWarnings("resource")
 	public void consumeMultipleMessages() throws NamingException, JMSException {
 
-		final Session session = jmsConnection.start(QUEUE_NAME);
-		final MessageConsumer messageConsumer = session.createConsumer(jmsConnection.destinationQueue);
+		final Session session = jmsConnection.start(TOPIC_NAME, TOPIC_ID);
+		final MessageConsumer messageConsumer = session.createDurableSubscriber((Topic) jmsConnection.destinationQueue,
+				"signature");
 
 		messageConsumer.setMessageListener(new MessageListener() {
 
